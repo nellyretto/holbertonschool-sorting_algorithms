@@ -13,16 +13,16 @@ void bubble_sort(int *array, size_t size)
 	int temp;
 	int swapped;
 
-	/* O(n^2) worst case (reverse sorted array) */
-	/* O(n^2) average case */
-	/* O(n) best case (already sorted array) */
+	/*O(n^2) worst case (reverse sorted array) */
+	/*O(n^2) average case */
+	/*O(n) best case (already sorted array) */
 
 	for (i = 0; i < size - 1; i++)
 	{
 		swapped = 0;
 		for (j = 0; j < size - i - 1; j++)
 		{
-			if (array[j] > array[j + i])
+			if (array[j] > array[j + 1])
 			{
 				temp = array[j];
 				array[j] = array[j + 1];
@@ -32,7 +32,7 @@ void bubble_sort(int *array, size_t size)
 			}
 		}
 
-		if (swapped == 0)
+		if (swapped ==0)
 			break;
 
 	}
