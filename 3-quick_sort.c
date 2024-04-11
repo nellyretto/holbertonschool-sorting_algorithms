@@ -10,15 +10,13 @@
  */
 
 void swap_elements(int *array, ssize_t i, ssize_t j)
-
 {
 	if (i != j)
 	{
 		int temp = array[i];
-
 		array[i] = array[j];
 		array[j] = temp;
-	}
+    }
 }
 
 /**
@@ -27,29 +25,32 @@ void swap_elements(int *array, ssize_t i, ssize_t j)
  * @array: array to be worked with
  * @low: first variable
  * @high: second variable
- * @size: unused variable
+ * @size: number of elements
+ *
  * Return: position of the element
  */
 
 int lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
-
 {
-	(void)size;
-
 	int pivot = array[high];
 	ssize_t i = low - 1;
-	ssize_t j;
-
-	for (j = low; j <= high - 1; j++)
-
+	for (ssize_t j = low; j <= high - 1; j++)
 	{
 		if (array[j] < pivot)
 		{
 			i++;
 			swap_elements(array, i, j);
+			if (i != j)
+			{
+				print_array(array, size);
+			}
 		}
 	}
 	swap_elements(array, i + 1, high);
+	if (i + 1 != high)
+	{
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 
@@ -63,12 +64,10 @@ int lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
  */
 
 void quick_sort_recursive(int *array, ssize_t low, ssize_t high, size_t size)
-
 {
 	if (low < high)
 	{
 		ssize_t pi = lomuto_partition(array, low, high, size);
-
 		quick_sort_recursive(array, low, pi - 1, size);
 		quick_sort_recursive(array, pi + 1, high, size);
 	}
@@ -87,10 +86,7 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 	{
 		return;
-	}
-
-	print_array(array, size);
-	quick_sort_recursive(array, 0, size - 1, size);
-	print_array(array, size);
+    }
+    quick_sort_recursive(array, 0, size - 1, size);
 }
 
