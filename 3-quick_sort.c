@@ -27,14 +27,15 @@ void swap_elements(int *array, ssize_t i, ssize_t j)
  * @array: array to be worked with
  * @low: first variable
  * @high: second variable
- * @size: number of elements
- *
+ * @size: unused variable
  * Return: position of the element
  */
 
 int lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
 
 {
+	(void)size;
+
 	int pivot = array[high];
 	ssize_t i = low - 1;
 	ssize_t j;
@@ -46,17 +47,9 @@ int lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
 		{
 			i++;
 			swap_elements(array, i, j);
-			if (i != j)
-			{
-				print_array(array, size);
-			}
 		}
 	}
-swap_elements(array, i + 1, high);
-	if (i + 1 != high)
-	{
-		print_array(array, size);
-	}
+	swap_elements(array, i + 1, high);
 	return (i + 1);
 }
 
@@ -95,6 +88,9 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
+
+	print_array(array, size);
 	quick_sort_recursive(array, 0, size - 1, size);
+	print_array(array, size);
 }
 
