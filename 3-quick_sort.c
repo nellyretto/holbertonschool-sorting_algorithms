@@ -14,9 +14,10 @@ void swap_elements(int *array, ssize_t i, ssize_t j)
 	if (i != j)
 	{
 		int temp = array[i];
+
 		array[i] = array[j];
 		array[j] = temp;
-    }
+	}
 }
 
 /**
@@ -34,7 +35,9 @@ int lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
 {
 	int pivot = array[high];
 	ssize_t i = low - 1;
-	for (ssize_t j = low; j <= high - 1; j++)
+	ssize_t j;
+
+	for (j = low; j <= high - 1; j++)
 	{
 		if (array[j] < pivot)
 		{
@@ -68,6 +71,7 @@ void quick_sort_recursive(int *array, ssize_t low, ssize_t high, size_t size)
 	if (low < high)
 	{
 		ssize_t pi = lomuto_partition(array, low, high, size);
+
 		quick_sort_recursive(array, low, pi - 1, size);
 		quick_sort_recursive(array, pi + 1, high, size);
 	}
@@ -86,7 +90,7 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 	{
 		return;
-    }
-    quick_sort_recursive(array, 0, size - 1, size);
+	}
+	quick_sort_recursive(array, 0, size - 1, size);
 }
 
